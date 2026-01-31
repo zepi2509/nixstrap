@@ -86,7 +86,7 @@ export async function confirmDiskWipe(path: string): Promise<boolean> {
   // Check if disk has mounted partitions
   if (disk.children) {
     for (const child of disk.children) {
-      if (child.mountpoints?.some((m) => m !== null)) {
+      if (child.mountpoints?.some((m: string | null) => m !== null)) {
         console.warn(`Warning: ${child.path} is mounted!`);
       }
     }
