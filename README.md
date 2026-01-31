@@ -34,6 +34,7 @@ nixstrap install
 ```
 
 This will guide you through:
+
 1. Dashlane login (if not already logged in)
 2. Host selection from your flake
 3. Disk selection

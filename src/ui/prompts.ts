@@ -42,7 +42,7 @@ export async function promptSelectHost(hosts: string[]): Promise<string> {
 
 export async function promptConfirm(
   message: string,
-  defaultValue = false
+  defaultValue = false,
 ): Promise<boolean> {
   const { Confirm } = await import("@cliffy/prompt");
 
@@ -54,7 +54,7 @@ export async function promptConfirm(
 
 export async function promptInput(
   message: string,
-  options: { default?: string; validate?: (value: string) => boolean | string } = {}
+  options: { default?: string; validate?: (value: string) => boolean | string } = {},
 ): Promise<string> {
   const { Input } = await import("@cliffy/prompt");
 

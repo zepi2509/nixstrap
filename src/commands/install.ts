@@ -1,11 +1,7 @@
 import { Command } from "@cliffy/command";
 import { colors } from "@cliffy/ansi/colors";
 import { listDisks, validateDiskPath } from "../lib/disk.ts";
-import {
-  dcliIsLoggedIn,
-  dcliLogin,
-  getRequiredSecrets,
-} from "../lib/dashlane.ts";
+import { dcliIsLoggedIn, dcliLogin, getRequiredSecrets } from "../lib/dashlane.ts";
 import {
   getNixosConfigurations,
   runDisko,
@@ -89,18 +85,24 @@ export const installCommand = new Command()
     }
 
     if (!githubToken) {
-      showError("GitHub token is required (provide via --github-token, GITHUB_TOKEN env var, or Dashlane)");
+      showError(
+        "GitHub token is required (provide via --github-token, GITHUB_TOKEN env var, or Dashlane)",
+      );
       Deno.exit(1);
     }
 
     if (!ageKey) {
-      showError("SOPS age key is required (provide via --age-key, SOPS_AGE_KEY env var, or Dashlane)");
+      showError(
+        "SOPS age key is required (provide via --age-key, SOPS_AGE_KEY env var, or Dashlane)",
+      );
       Deno.exit(1);
     }
 
     // Validate age key format (basic check)
     if (!ageKey.includes("AGE-SECRET-KEY")) {
-      showWarning("The age key doesn't appear to be in the correct format (should contain 'AGE-SECRET-KEY')");
+      showWarning(
+        "The age key doesn't appear to be in the correct format (should contain 'AGE-SECRET-KEY')",
+      );
       const proceed = await promptConfirm("Continue anyway?", false);
       if (!proceed) {
         Deno.exit(1);
@@ -169,7 +171,7 @@ export const installCommand = new Command()
     console.log(colors.red("\n⚠️  WARNING: This will ERASE ALL DATA on the selected disk!"));
     const confirmed = await promptConfirm(
       "Do you want to proceed with the installation?",
-      false
+      false,
     );
 
     if (!confirmed) {

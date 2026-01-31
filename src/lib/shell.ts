@@ -17,7 +17,7 @@ export interface ShellResult {
 
 export async function runCommand(
   cmd: string[],
-  options: ShellOptions = {}
+  options: ShellOptions = {},
 ): Promise<ShellResult> {
   const [executable, ...args] = cmd;
 
@@ -61,7 +61,7 @@ export async function runCommand(
 
 export async function runInteractive(
   cmd: string[],
-  options: Omit<ShellOptions, "stdin" | "stdout" | "stderr"> = {}
+  options: Omit<ShellOptions, "stdin" | "stdout" | "stderr"> = {},
 ): Promise<number> {
   const [executable, ...args] = cmd;
 
@@ -82,7 +82,7 @@ export async function runInteractive(
 
 export async function runWithMergedOutput(
   cmd: string[],
-  options: ShellOptions = {}
+  options: ShellOptions = {},
 ): Promise<{ code: number; output: string; success: boolean }> {
   const [executable, ...args] = cmd;
 
@@ -90,11 +90,7 @@ export async function runWithMergedOutput(
     args,
     cwd: options.cwd,
     env: options.env,
-    stdin: options.stdin === "inherit"
-      ? "inherit"
-      : options.stdin === "null"
-      ? "null"
-      : "piped",
+    stdin: options.stdin === "inherit" ? "inherit" : options.stdin === "null" ? "null" : "piped",
     stdout: "piped",
     stderr: "piped",
   });

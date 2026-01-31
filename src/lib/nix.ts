@@ -12,7 +12,7 @@ export async function testNixInstallation(): Promise<boolean> {
 
 export async function getNixosConfigurations(
   flakeUrl: string,
-  token?: string
+  token?: string,
 ): Promise<string[]> {
   const env: Record<string, string> = {};
   if (token) {
@@ -22,7 +22,7 @@ export async function getNixosConfigurations(
 
   const result = await runCommand(
     ["nix", "flake", "show", "--json", flakeUrl],
-    { env, stderr: "piped" }
+    { env, stderr: "piped" },
   );
 
   if (!result.success) {
@@ -66,7 +66,7 @@ export async function runDisko(options: DiskoOptions): Promise<number> {
       "--flake",
       `${options.flakeUrl}#${options.host}`,
     ],
-    { env }
+    { env },
   );
 }
 

@@ -1,7 +1,8 @@
 import { runCommand, runInteractive, ShellResult } from "./shell.ts";
 
 const DCLI_VERSION = "6.2450.0";
-const DCLI_DOWNLOAD_URL = `https://github.com/Dashlane/dashlane-cli/releases/download/v${DCLI_VERSION}/dcli-linux-x64`;
+const DCLI_DOWNLOAD_URL =
+  `https://github.com/Dashlane/dashlane-cli/releases/download/v${DCLI_VERSION}/dcli-linux-x64`;
 const DCLI_PATH = "/tmp/dcli";
 
 export interface FHSOptions {
@@ -77,7 +78,7 @@ pkgs.buildFHSEnv {
 
 export async function runInFHS(
   cmd: string[],
-  options: { env?: Record<string, string>; stdin?: "inherit" | "null" } = {}
+  options: { env?: Record<string, string>; stdin?: "inherit" | "null" } = {},
 ): Promise<ShellResult> {
   const fhsPath = await buildFHSEnvironment();
   const dcliPath = await ensureDcli();
@@ -94,7 +95,7 @@ export async function runInFHS(
 
 export async function runInteractiveInFHS(
   cmd: string[],
-  options: { env?: Record<string, string> } = {}
+  options: { env?: Record<string, string> } = {},
 ): Promise<number> {
   const fhsPath = await buildFHSEnvironment();
   const dcliPath = await ensureDcli();
@@ -146,7 +147,7 @@ export async function getSecureNote(title: string): Promise<string | null> {
 
   const result = await runInFHS(
     [dcliPath, "note", "--title", title, "--output", "json"],
-    { stdin: "null" }
+    { stdin: "null" },
   );
 
   if (!result.success) {
@@ -176,7 +177,7 @@ export async function getSecret(secretName: string): Promise<string | null> {
   const dcliPath = await ensureDcli();
   const listResult = await runInFHS(
     [dcliPath, "note"],
-    { stdin: "null" }
+    { stdin: "null" },
   );
 
   if (!listResult.success) {
@@ -205,7 +206,7 @@ export async function getRequiredSecrets(): Promise<{
   if (!githubToken) {
     throw new Error(
       "Could not find 'github-token' secure note in Dashlane. " +
-        "Please create a secure note with this exact title containing your GitHub personal access token."
+        "Please create a secure note with this exact title containing your GitHub personal access token.",
     );
   }
 
@@ -213,7 +214,7 @@ export async function getRequiredSecrets(): Promise<{
   if (!ageKey) {
     throw new Error(
       "Could not find 'sops-age-key' secure note in Dashlane. " +
-        "Please create a secure note with this exact title containing your SOPS age private key."
+        "Please create a secure note with this exact title containing your SOPS age private key.",
     );
   }
 
