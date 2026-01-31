@@ -1,0 +1,21 @@
+# Deno
+.deno/
+*.lock
+
+# Compiled binary
+nixstrap
+
+# Temporary files
+/tmp/
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
