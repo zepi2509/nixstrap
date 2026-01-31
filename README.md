@@ -13,11 +13,25 @@ Interactive NixOS installation tool with Dashlane secret management integration.
 
 ## Installation
 
+### Using Nix (Recommended)
+
 ```bash
-curl -sL https://github.com/zepi2509/nixstrap/releases/latest/download/install.sh | sh
+nix run github:zepi2509/nixstrap
 ```
 
-Or build from source:
+Or add it to your flake:
+
+```nix
+{
+  inputs.nixstrap.url = "github:zepi2509/nixstrap";
+  
+  outputs = { self, nixpkgs, nixstrap, ... }: {
+    # Use nixstrap packages or apps
+  };
+}
+```
+
+### Build from source
 
 ```bash
 git clone https://github.com/zepi2509/nixstrap.git
