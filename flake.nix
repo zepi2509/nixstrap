@@ -10,24 +10,13 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        inherit (pkgs) deno;
       in
       {
-        packages.default = pkgs.stdenv.mkDerivation {
-          pname = "nixstrap";
-          version = "1.0.0";
-          src = ./.;
-          
-          nativeBuildInputs = [ deno ];
-          
-          buildPhase = ''
-            deno compile --allow-all -o nixstrap main.ts
-          '';
-          
-          installPhase = ''
-            mkdir -p $out/bin
-            cp nixstrap $out/bin/nixstrap
-            chmod +x $out/bin/nixstrap
+        packages.default = pkgs.writeShellApplication {
+          name = "nixstrap";
+          runtimeInputs = with pkgs; [ deno ];
+          text = ''
+            exec deno run --allow-all ${./main.ts} "$@"
           '';
         };
 
