@@ -1,13 +1,10 @@
 # Deno
 .deno/
-*.lock
+deno.lock
 
 # Compiled binary
 nixstrap
-
-# Temporary files
-/tmp/
-*.tmp
+nixstrap-*
 
 # IDE
 .vscode/

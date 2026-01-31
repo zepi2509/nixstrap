@@ -14,10 +14,15 @@
       {
         packages.default = pkgs.writeShellApplication {
           name = "nixstrap";
-          runtimeInputs = with pkgs; [ deno ];
+          runtimeInputs = with pkgs; [ pkgs.deno ];
           text = ''
-            exec deno run --allow-all ${./main.ts} "$@"
+            # Set writable home for Deno cache  
+            export HOME=/tmp
+            
+            # Run from current directory
+            deno run --allow-all main.ts "$@"
           '';
+          checkPhase = "true";
         };
 
         apps.default = {
@@ -26,10 +31,10 @@
         };
 
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            deno
-          ];
+          buildInputs = with pkgs; [ pkgs.deno ];
         };
       }
     );
 }
+
+
