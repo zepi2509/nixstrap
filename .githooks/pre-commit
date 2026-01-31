@@ -1,0 +1,29 @@
+#!/bin/sh
+# Nixstrap pre-commit hook
+# Runs format check, lint, and type check before allowing commit
+
+echo "Running pre-commit checks..."
+
+# Check formatting
+echo "Checking formatting..."
+if ! deno fmt --check; then
+    echo "Error: Formatting check failed. Run 'deno fmt' to fix."
+    exit 1
+fi
+
+# Run linter
+echo "Running linter..."
+if ! deno lint; then
+    echo "Error: Linting failed. Fix the errors above."
+    exit 1
+fi
+
+# Run type check
+echo "Running type check..."
+if ! deno check main.ts; then
+    echo "Error: Type checking failed. Fix the errors above."
+    exit 1
+fi
+
+echo "All pre-commit checks passed!"
+exit 0

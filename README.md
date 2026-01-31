@@ -81,7 +81,22 @@ deno fmt
 
 # Check types
 deno check main.ts
+
+# Run linter
+deno lint
 ```
+
+### Git Hooks
+
+This repository uses native git hooks for pre-commit checks. The hooks are configured automatically via `git config core.hooksPath .githooks`.
+
+Pre-commit runs:
+
+- `deno fmt --check`
+- `deno lint`
+- `deno check main.ts`
+
+To bypass hooks in an emergency: `git commit --no-verify`
 
 ## Architecture
 
