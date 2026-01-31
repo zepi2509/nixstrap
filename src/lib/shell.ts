@@ -1,4 +1,4 @@
-import { mergeReadableStreams } from "@std/streams/merge-readable-streams";
+// No external imports needed
 
 export interface ShellOptions {
   cwd?: string;

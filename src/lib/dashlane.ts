@@ -1,4 +1,4 @@
-import { runCommand, runInteractive, ShellResult } from "./shell.ts";
+import { runCommand, runInteractive, type ShellResult } from "./shell.ts";
 
 const DCLI_VERSION = "6.2450.0";
 const DCLI_DOWNLOAD_URL =

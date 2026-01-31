@@ -62,10 +62,10 @@ export async function validateDiskPath(path: string): Promise<boolean> {
   return result.success;
 }
 
-export async function getDiskByPath(
+export function getDiskByPath(
   disks: DiskInfo[],
   path: string,
-): Promise<DiskInfo | undefined> {
+): DiskInfo | undefined {
   return disks.find((d) => d.path === path);
 }
 

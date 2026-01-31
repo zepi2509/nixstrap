@@ -1,6 +1,6 @@
 import { Select } from "@cliffy/prompt";
 import { colors } from "@cliffy/ansi/colors";
-import { DiskInfo, formatDiskDisplay } from "../lib/disk.ts";
+import { type DiskInfo, formatDiskDisplay } from "../lib/disk.ts";
 
 export async function promptSelectDisk(disks: DiskInfo[]): Promise<DiskInfo> {
   if (disks.length === 0) {

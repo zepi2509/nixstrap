@@ -1,4 +1,4 @@
-import { runCommand, runInteractive, ShellOptions } from "./shell.ts";
+import { runCommand, runInteractive } from "./shell.ts";
 
 export interface NixFlakeConfig {
   url: string;
