@@ -20,7 +20,7 @@
             export HOME=/tmp
             
             # Run from current directory
-            deno run --allow-all main.ts "$@"
+            deno run --allow-all --no-lock main.ts "$@"
           '';
           checkPhase = "true";
         };
