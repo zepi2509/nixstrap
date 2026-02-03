@@ -16,10 +16,12 @@
           name = "nixstrap";
           runtimeInputs = with pkgs; [ pkgs.deno ];
           text = ''
-            # Set writable home for Deno cache  
+            # Set writable home for Deno cache
             export HOME=/tmp
-            
-            # Run from current directory
+
+            # Run from the script's directory (Nix store path with project files)
+            cd "$(dirname "$BASH_SOURCE")"
+
             deno run --allow-all --no-lock main.ts "$@"
           '';
           checkPhase = "true";
