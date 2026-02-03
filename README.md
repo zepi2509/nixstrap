@@ -16,7 +16,7 @@ Interactive NixOS installation tool with Dashlane secret management integration.
 ### Using Nix (Recommended)
 
 ```bash
-nix run github:zepi2509/nixstrap
+nix run github:zepi2509/nixstrap --no-write-lock-file
 ```
 
 Or add it to your flake:
